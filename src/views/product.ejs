@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= product.name %> Details</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+  <header><a href="/">Home</a> | <a href="/cart">Cart</a></header>
+  <main>
+    <h2><%= product.name %></h2>
+    <p>Price: ₹<%= product.price %></p>
+    <p><%= product.description || 'No description available.' %></p>
+    <form method="post" action="/add-to-cart/<%= product.id %>">
+      <button type="submit">Add to Cart</button>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - ECOM BUY</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+  <header>
+    <h1>ECOM BUY</h1>
+    <nav>
+      <a href="/">Home</a> | <a href="/cart">Cart</a> | <a href="/login">Login</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Your Shopping Cart</h2>
+    <% if (cart.length === 0) { %>
+      <p>Your cart is empty!</p>
+    <% } else { %>
+      <div class="cart-items">
+        <% cart.forEach(item => { %>
+          <div class="cart-item">
+            <img src="<%= item.image %>" alt="<%= item.name %>" />
+            <div class="cart-item-info">
+              <div class="cart-item-name"><%= item.name %></div>
+              <div>Price: ₹<%= item.price %></div>
+              <div>Quantity: <%= item.quantity %></div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ECOM BUY</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <script>
+    // Show alert if product added
+    window.onload = function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const added = urlParams.get('added');
+      if (added) {
+        alert(`"${added}" added to cart!`);
+      }
+    };
+  </script>
+</head>
+<body>
+  <header>
+    <h1>ECOM BUY</h1>
+    <nav>
+      <a href="/">Home</a> | 
+      <a href="/cart">Cart</a> | 
+      <a href="/login">Login</a> 
+    </nav>
+  </header>
+
+  <section class="categories">
+    <strong>Categories:</strong>
+    <a href="/">All</a>
+    <% categories.forEach(cat => { %>
+      <a href="/?category=<%= cat %>" <%= cat === categoryFilter ? 'class="active"' : '' %>><%= cat %></a>
+    <% }) %>
+  </section>
+
+  <main>
+    <h2>Products <%= categoryFilter ? `- ${categoryFilter}` : '' %></h2>
+    <section class="product-list">
+      <% products.forEach(product => { %>
+      <div class="product-card">
+        <img src="<%= product.image %>" alt="<%= product.name %>" />
+        <div class="product-name"><%= product.name %></div>
+        <div class="price">₹<%= product.price %></div>
+        <form method="post" action="/add-to-cart/<%= product.id %>">
+          <button type="submit">Add to Cart</button>
+        </form>
+      </div>
+      <% }) %>
+    </section>
+  </main>
+</body>
+</html>
